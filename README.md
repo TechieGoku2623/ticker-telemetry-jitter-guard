@@ -2,6 +2,11 @@
 
 A high-throughput, low-latency asynchronous engine engineered to resolve consolidated NBBO inter-arrival jitter by clamping sub-five-second venue clock steps, rejecting non-finite or inverted quotes, and scoring burst structure with a two-sample Allan deviation.
 
+Website: https://github.com/TechieGoku2623/ticker-telemetry-jitter-guard
+
+Topics: `python` `asyncio` `finance` `market-data` `low-latency` `telemetry` `trading`
+
+
 ## 🏗️ Systems Architecture & Event Topology
 
 `TickerTelemetryJitterGuard` is the admission point. Each venue keeps its own gap ring, a `deque` of inter-arrival nanoseconds, so one noisy book cannot move another venue's clock. `run` packs every record with `struct`, puts the bytes on an `asyncio.Queue`, and reads them back before `ingest`. That queue is the in-process stand-in for the Kafka topic `md.ticks.nbbo`. This process does not open a broker socket.
@@ -31,6 +36,8 @@ Allan deviation + burst flag (8 gaps, each < 450_000 ns)
 Clock order follows the SEC Rule 613 expectation that consolidated audit timestamps stay ordered against a synchronized clock. The guard clamps or rejects. It does not discipline an exchange clock and it does not submit orders.
 
 ## 📊 Core Visual Walkthrough & Engine Pipeline Flow
+
+![Terminal walkthrough](docs/assets/terminal-walkthrough.gif)
 
 ```
 tick dict

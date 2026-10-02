@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "ticker-telemetry-jitter-guard"
 version = "1.0.0"
-description = "Ticker Telemetry Jitter Guard"
+description = "High-throughput NBBO jitter guard that clamps venue clock skew and scores inter-arrival bursts with a two-sample Allan deviation."
 readme = "README.md"
 requires-python = ">=3.12"
 license = { text = "MIT" }
