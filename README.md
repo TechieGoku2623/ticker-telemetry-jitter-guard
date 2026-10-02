@@ -13,6 +13,14 @@
 | **Website** | https://github.com/TechieGoku2623/ticker-telemetry-jitter-guard |
 | **Topics** | `python` `asyncio` `finance` `market-data` `low-latency` `telemetry` `trading` |
 
+## Watch the demo
+
+<p align="center">
+  <img src="docs/demo.gif" alt="Ticker Telemetry Jitter Guard dashboard walkthrough" width="920"/>
+</p>
+
+Play the video: [docs/watch.html](docs/watch.html)
+
 ## The problem this solves
 
 A pricing or surveillance desk trusts the National Best Bid and Offer only if the gaps between quotes are honest. A microsecond burst, an inverted timestamp, or a clock that has walked several seconds looks like a real price move.
