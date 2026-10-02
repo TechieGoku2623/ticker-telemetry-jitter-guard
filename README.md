@@ -13,6 +13,14 @@
 | **Website** | https://github.com/TechieGoku2623/ticker-telemetry-jitter-guard |
 | **Topics** | `python` `asyncio` `finance` `market-data` `low-latency` `telemetry` `trading` |
 
+## The problem this solves
+
+A pricing or surveillance desk trusts the National Best Bid and Offer only if the gaps between quotes are honest. A microsecond burst, an inverted timestamp, or a clock that has walked several seconds looks like a real price move.
+
+Ticker Telemetry Jitter Guard sits on the quote stream and publishes a cleaned arrival record instead of the raw timestamps. It measures inter-arrival gaps and their Allan deviation, flags a burst when eight gaps fall inside a 450 microsecond window, rejects inverted or non-numeric timestamps, raises when clock skew exceeds five seconds, and clamps a small skew so one late packet does not rewrite the clock. The published record carries the gap series, the burst flag, and per-venue ring depth on the narrative topic `md.ticks.nbbo`.
+
+An interviewer should see a feed-health gate in front of anything aligned with SEC Rule 613: bad time is rejected or clamped, and the counters show what was dropped.
+
 ## Walkthrough
 
 ### How it works
